@@ -1,6 +1,7 @@
-package platform
+package main
 
 import "core:fmt"
+import "core:math"
 import "game"
 
 
