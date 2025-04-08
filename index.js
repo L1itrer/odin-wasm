@@ -11,7 +11,7 @@ function sin(x) {
 }
 
 WebAssembly.instantiateStreaming(fetch('game.wasm'), {
-    platform: {
+    platform_wasm: {
         introduce,
         sin
     }
