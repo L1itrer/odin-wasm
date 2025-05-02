@@ -1,3 +1,7 @@
+*.wat
+*.wasm
+
+
 # Prerequisites
 *.d
 
