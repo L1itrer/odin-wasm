@@ -11,7 +11,7 @@ sin :: proc (x: f64) -> f64
     return math.sin_f64(x)
 }
 
-introduce :: proc ()
+introduce :: proc "contextless" ()
 {
     context = runtime.default_context()
     fmt.println("hello")
