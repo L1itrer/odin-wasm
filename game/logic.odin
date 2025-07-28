@@ -60,6 +60,10 @@ key_up :: proc "contextless" (key_code: i32) {
 	}
 }
 
+@(export)
+clicked :: proc "contextless" () {
+	platform.play_sound()
+}
 
 @(export)
 update :: proc "contextless" () {
@@ -80,6 +84,6 @@ update :: proc "contextless" () {
 
 @(export)
 draw :: proc "contextless" () {
-	platform.draw_player_texture(game_state.x, game_state.y, 1.5, 90.0)
+	platform.draw_player_texture(game_state.x, game_state.y, 1.5, 0.0)
 }
 

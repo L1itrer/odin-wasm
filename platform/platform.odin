@@ -20,16 +20,20 @@ draw_rectangle :: proc "contextless" (x, y, w, h: f32) {
 }
 
 
-draw_player_texture :: proc "contextless" (x, y, scale, rotation: f32)
-{
+draw_player_texture :: proc "contextless" (x, y, scale, rotation: f32) {
   position := ray.Vector2({x, y})
   ray.DrawTextureEx(player_texture, position, rotation, scale, ray.WHITE)
   // ray.DrawTexture(player_texture, i32(x), i32(y), ray.WHITE)
 }
 
-player_texture: ray.Texture
+play_sound :: proc "contextless" () {
+  ray.PlaySound(click_sound)
+}
 
-init :: proc "contextless" ()
-{
+player_texture: ray.Texture
+click_sound: ray.Sound
+
+init :: proc "contextless" () {
   player_texture = ray.LoadTexture("./assets/sprites/redbird-midflap.png")
+  click_sound = ray.LoadSound("./assets/audio/point.ogg")
 }

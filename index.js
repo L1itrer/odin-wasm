@@ -4,6 +4,7 @@ let wasm = null;
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext('2d');
 const player_image = document.getElementById("player");
+const click_audio = document.getElementById("click-sound");
 ctx.fillStyle = "#EE0000";
 
 let game_update = null;
@@ -33,6 +34,10 @@ function draw_player_texture(x, y, scale, rotation) {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 }
 
+function play_sound() {
+  click_audio.play()
+}
+
 function game_loop() {
     game_update();
     clearCanvas();
@@ -46,16 +51,22 @@ WebAssembly.instantiateStreaming(fetch('game.wasm'), {
         sin,
         draw_rectangle,
         draw_player_texture,
+        play_sound,
     }
 
 }).then((w) => {
     wasm = w;
     document.addEventListener("keydown", (e) => {
-        wasm.instance.exports.key_down(e.key.charCodeAt())
+        wasm.instance.exports.key_down(e.key.charCodeAt());
     });
 
         document.addEventListener("keyup", (e) => {
-        wasm.instance.exports.key_up(e.key.charCodeAt())
+        wasm.instance.exports.key_up(e.key.charCodeAt());
+    });
+    document.addEventListener("mousedown", (e) => {
+      if (e.button == 0) {
+        wasm.instance.exports.clicked();
+      }
     });
     game_update = wasm.instance.exports.update
     game_draw   = wasm.instance.exports.draw

@@ -9,9 +9,9 @@ import ray "vendor:raylib"
 
 //The game needs to use following things:
 // TODO: Mouse handling
-// TODO: Keyboard handling
-// TODO: Texture Drawing
-// TODO: Clearing the screen
+// DONE: Keyboard handling
+// DONE: Texture Drawing
+// DONE: Clearing the screen
 // TODO: Playing some sounds
 // TODO: Setting the browser icon
 
@@ -24,12 +24,14 @@ poll :: proc() {
 	if ray.IsKeyUp(ray.KeyboardKey.S) do game.key_up('s')
 	if ray.IsKeyUp(ray.KeyboardKey.A) do game.key_up('a')
 	if ray.IsKeyUp(ray.KeyboardKey.D) do game.key_up('d')
+	if ray.IsMouseButtonPressed(ray.MouseButton.LEFT) do game.clicked()
 }
 
 
 main :: proc() {
 
 	ray.InitWindow(game.WINDOW_WIDTH, game.WINDOW_HEIGHT, "Odin on desktop")
+	ray.InitAudioDevice()
 	platform.init()
 
 	ray.SetTargetFPS(60)
