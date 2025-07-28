@@ -8,12 +8,12 @@ import ray "vendor:raylib"
 
 
 //The game needs to use following things:
-// TODO: Mouse handling
+// DONE: Mouse handling
 // DONE: Keyboard handling
 // DONE: Texture Drawing
 // DONE: Clearing the screen
-// TODO: Playing some sounds
-// TODO: Setting the browser icon
+// DONE: Playing some sounds
+// DONE: Setting the icon
 
 poll :: proc() {
 	if ray.IsKeyDown(ray.KeyboardKey.W) do game.key_down('w')
@@ -32,6 +32,8 @@ main :: proc() {
 
 	ray.InitWindow(game.WINDOW_WIDTH, game.WINDOW_HEIGHT, "Odin on desktop")
 	ray.InitAudioDevice()
+	icon := ray.LoadImage("./assets/favicon.png")
+	ray.SetWindowIcon(icon)
 	platform.init()
 
 	ray.SetTargetFPS(60)
