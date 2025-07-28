@@ -8,6 +8,9 @@
         body {
             background-color: #181818;
         }
+        .hidden {
+            display: none;
+        }
         #game {
             position: absolute;
             top: 50%;
@@ -21,6 +24,10 @@
 </head>
 <body>
     <canvas id="game" width="600" height="600"></canvas>
+    <div class="hidden">
+      <img id="player" src="/assets/sprites/redbird-midflap.png"
+      />
+    </div>
     <script src="index.js"></script>
 </body>
 </html>
